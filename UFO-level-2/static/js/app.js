@@ -1,6 +1,7 @@
 // Create a copy of the data
 var tableData = data;
 
+//show the table 
 function showTable(tableData){
   var tbody = d3.select(".table").select("tbody");
   tbody.html("");
@@ -18,6 +19,7 @@ showTable(tableData);
 
 var filterobject = {};
 
+//get the filtered entry and call multifilter function
 function filterinput(){
   var changedelement = d3.select(this).select("input");
   var elementvalue = changedelement.property("value");
@@ -31,6 +33,7 @@ function filterinput(){
 multifilter();
 }
 
+//filters data according to the entry
 function multifilter(){
   var filterdata = tableData;
   Object.entries(filterobject).forEach(([key, value]) => {
@@ -38,7 +41,7 @@ function multifilter(){
   });
 
   console.log(filterdata);
-  
+
   //write filtered table to html
   showTable(filterdata);
 };
