@@ -1,34 +1,39 @@
-
-// from data.js
+// Create a copy of the data
 var tableData = data;
 
-// YOUR CODE HERE!
+function showTable(tableData){
+  var tbody = d3.select(".table").select("tbody");
+  tbody.html("");
+  tableData.forEach((x) => {
+    var row = tbody.append("tr");
+    Object.entries(x).forEach(([key, value]) => {
+      var cell = row.append("td");
+      cell.text(value);
+    });
+  });
+};
 
-// Select the button
-var button = d3.select("filter-btn");
+//write table to html
+showTable(tableData);
 
-// Select the table
-var form = d3.select("ufo-table");
-
-// Create event handlers 
-button.on("click", runEnter);
-form.on("submit",runEnter);
-
-// Complete the event handler function for the form
-function runEnter() {
-
-  // Prevent the page from refreshing
-  d3.event.preventDefault();
-  
+//listen for filter button
+var button1 = d3.select("#filter-btn");
+button1.on("click", function() {
   // Select the input element and get the raw HTML node
-  var inputElement = d3.select("#datetime");
+  var inputElement1 = d3.select("#datetime");
+    var inputValue = inputElement1.property("value");
+    var filteredData = tableData.filter(function(event){
+        if(inputValue !== null && inputValue !== ''){
+            return event.datetime === inputValue;};
+          return event.datetime;
+        });
 
-  // Get the value property of the input element
-  var inputValue = inputElement.tableData("value");
+  //write filtered table to html
+  showTable(filteredData);
+});
 
-  console.log(inputValue);
-  console.log(tableData);
-
-  var filteredData = tableData.filter(tableData = tableData.datetime === inputValue);
-
-  console.log(filteredData);
+//clear form filters and show full table
+function resetForm(element) {
+  element.form.reset();
+  showTable(tableData);
+};
