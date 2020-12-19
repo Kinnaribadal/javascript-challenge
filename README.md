@@ -1,6 +1,6 @@
 # JavaScript Homework - JavaScript and DOM Manipulation
 
-
+Kinnari Patel
 
 1. Create a new repository for this project called `javascript-challenge`. With folder names to correspond to the challenges: **UFO-level-1** and **UFO-level-2**.
 
